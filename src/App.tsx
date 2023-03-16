@@ -34,7 +34,7 @@ function App() {
       <Header scrollHandler={scrollHandler} />
       <Container className="min-h-screen">
         <Title>Crafted by us, for you</Title>
-        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        <div className="grid grid-cols-1 gap-y-14 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-10">
           {data.map((product, index) => (
             <ProductCard product={product} key={index} />
           ))}
