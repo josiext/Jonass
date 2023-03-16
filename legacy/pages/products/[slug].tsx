@@ -1,7 +1,8 @@
-import Image from 'next/image'
-import getProducts from '../../sfcc.js'
+import Image from "next/image";
 
-export default function Product({ product }) {
+import { Product as IProduct } from "./types";
+
+export default function Product({ product }: { product: IProduct }) {
   return (
     <div className="flex h-screen flex-col justify-between">
       <div className="mx-auto mt-16 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -9,7 +10,7 @@ export default function Product({ product }) {
           <Image
             alt="coffee"
             className="rounded-lg"
-            src={product.imageGroups[0].images[0].link}
+            src={product.image}
             width={560}
             height={640}
           />
@@ -23,35 +24,35 @@ export default function Product({ product }) {
             <div className="mt-10 mb-5 border-t border-gray-200 pt-10 font-bold">
               Description
             </div>
-            <p className="max-w-xl">{product.longDescription}</p>
+            <p className="max-w-xl">{product.description}</p>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export async function getStaticProps({ params }) {
-  const searchResults = await getProducts(params.slug)
-  const coffeeProduct = searchResults[0]
+  const searchResults = await getProducts(params.slug);
+  const coffeeProduct = searchResults[0];
 
   return {
     props: {
       product: coffeeProduct,
     },
-  }
+  };
 }
 
 export async function getStaticPaths() {
-  const coffeeProducts = await getProducts('coffee')
-  let fullPaths = []
+  const coffeeProducts = await getProducts("coffee");
+  let fullPaths = [];
 
   for (let product of coffeeProducts) {
-    fullPaths.push({ params: { slug: product.id } })
+    fullPaths.push({ params: { slug: product.id } });
   }
 
   return {
     paths: fullPaths,
-    fallback: 'blocking',
-  }
+    fallback: "blocking",
+  };
 }

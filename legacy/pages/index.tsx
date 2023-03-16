@@ -1,19 +1,23 @@
-import { useRef } from 'react'
-import Header from '../components/Header'
-import ProductCard from '../components/ProductCard'
-import getProducts from '../sfcc.js'
+import { useRef } from "react";
+import Header from "../components/Header";
+import ProductCard from "../components/ProductCard";
+import axios from "axios";
+import Papa from "papaparse";
+import { Product } from "./products/types";
+
+const DOC_LINK =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSlTuh4wcDhnwmHdgzkyD1rNI_HeCy2Hhha5gu237IxiYB7MQEb4xw1X3qkkYqSP3d46vBhbgAS2rDg/pub?output=csv";
 
 export default function Gallery({ data }) {
-  let coffeeRef = useRef<HTMLParagraphElement>()
+  const coffeeRef = useRef<HTMLParagraphElement>();
 
   const scrollHandler = (e) => {
-    e.preventDefault()
-    // @ts-ignore
-    coffeeRef.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })
-  }
+    e.preventDefault();
+    coffeeRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <>
@@ -37,15 +41,26 @@ export default function Gallery({ data }) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const searchResults = await getProducts('coffee')
+  const response = await axios.get(DOC_LINK, {
+    responseType: "blob",
+  });
+
+  const products: Product[] = await new Promise((resolve) => {
+    Papa.parse(response.data, {
+      header: true,
+      complete: function (results) {
+        resolve(results.data as Product[]);
+      },
+    });
+  });
 
   return {
     props: {
-      data: searchResults,
+      data: products,
     },
-  }
+  };
 }
