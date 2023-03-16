@@ -1,9 +1,9 @@
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { Product } from "../types";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href={`/products/${product.nombre}`}>
+    <Link to={`product/${product.nombre}`}>
       <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
         <img src={product.imagen} />
       </div>

@@ -1,8 +1,11 @@
 import { Product as IProduct } from "../types";
 import { getProducts } from "../api";
 import { useEffect, useState } from "react";
+import { useMatch } from "react-router-dom";
 
-export default function Product({ name }: { name: string }) {
+export default function Product() {
+  const match = useMatch("/product/:name");
+
   const [product, setProduct] = useState<IProduct | null>(null);
 
   useEffect(() => {
@@ -10,6 +13,7 @@ export default function Product({ name }: { name: string }) {
   }, []);
 
   const loadProduct = async () => {
+    const name = decodeURI(match?.params.name ?? "");
     const product = await getProducts(decodeURI(name));
     setProduct(product[0]);
   };
