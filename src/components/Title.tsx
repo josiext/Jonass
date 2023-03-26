@@ -1,9 +1,12 @@
-export const Title = ({ children }: { children: React.ReactNode }) => {
+export const Title = ({
+  children,
+  ...props
+}: React.ComponentPropsWithoutRef<"span">) => {
   return (
-    <div className="sm:py-15 mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-center mt-1 text-4xl font-bold uppercase text-gray-900 sm:text-5xl sm:tracking-tight lg:text-5xl">
+    <span {...props}>
+      <h2 className="inline-block text-4xl font-semibold pb-1 border-b-4 border-neutral-900 mb-20">
         {children}
       </h2>
-    </div>
+    </span>
   );
 };

@@ -3,16 +3,15 @@ import clsx from "clsx";
 export const Container = ({
   className,
   children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) => {
+  ...props
+}: React.ComponentPropsWithoutRef<"div">) => {
   return (
     <div
       className={clsx(
-        "mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8",
+        "min-h-screen max-w-[1200px] mx-auto flex flex-col",
         className
       )}
+      {...props}
     >
       {children}
     </div>
