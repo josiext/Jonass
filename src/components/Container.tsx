@@ -8,7 +8,7 @@ export const Container = ({
   return (
     <div
       className={clsx(
-        "min-h-screen max-w-[1200px] mx-auto flex flex-col",
+        "min-h-screen max-w-[1300px] mx-auto flex flex-col px-5",
         className
       )}
       {...props}

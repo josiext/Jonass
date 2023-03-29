@@ -50,33 +50,38 @@ export default function Home() {
         </span>
       </nav>
 
-      <div className="h-full max-w-[1300px] flex items-center">
-        <span>
-          <h1 className="text-[64px] font-semibold leading-tight">
+      <div className="h-full flex items-center justify-center">
+        <span className="text-center xl:text-left">
+          <h1 className="text-[46px] md:text-[60px] lg:text-[64px] font-semibold leading-tight">
             Los mejores
             <br />
             pasteles de Concon
             <br />
             City
           </h1>
-          <p className="text-xl mt-4">Repostería de Concon a encargo.</p>
+          <p className="text-lg md:text-xl mt-4">
+            Repostería de Concon a encargo.
+          </p>
 
           <span className="space-x-6">
             <button
-              className="bg-red-700 text-neutral-50 font-semibold py-3 px-8 rounded-xl mt-8"
+              className="bg-red-700 text-neutral-50 font-semibold py-3 px-8 rounded-xl text-sm md:text-md mt-8"
               onClick={scrollToElement("products-container")}
             >
               Pasteles
             </button>
             <button
-              className="bg-red-200 text-red-700 font-semibold py-3 px-8 rounded-xl mt-8"
+              className="bg-red-200 text-red-700 font-semibold py-3 px-8 rounded-xl mt-8  text-sm md:text-md"
               onClick={scrollToElement("contact-container")}
             >
               Contacto
             </button>
           </span>
         </span>
-        <img src={HERO} className="w-[370px] h-[458px] ml-32" />
+        <img
+          src={HERO}
+          className="hidden w-[370px] h-[458px] lg:ml-16 lg:block"
+        />
       </div>
     </Container>
   );
