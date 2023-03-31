@@ -1,7 +1,6 @@
 import { Product } from "../types";
 import DEFAULT_IMAGE from "../assets/default_img.png";
 import { scrollToElement } from "../utils/scrollToElement";
-import Tooltip from "rc-tooltip";
 
 export default function ProductCard({
   product,
